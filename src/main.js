@@ -3,20 +3,20 @@
 import Vue from 'vue'
 import VueResource from 'vue-resource'
 import ElementUI from 'element-ui'
-import ElementUex from './assets/js/element-uex.min.js'
+import ElementUex from 'element-uex'
 
 
  
 // require styles
-import 'codemirror/lib/codemirror.css'
-import 'element-ui/lib/theme-chalk/index.css'
+import 'element-ui/lib/theme-default/index.css'
+import 'element-uex/lib/theme-default/index.css'
 
 import App from './App'
 import router from './router'
 
 Vue.use(VueResource)
 Vue.use(ElementUI)
-Vue.prototype.$ElementUex = ElementUex
+Vue.use(ElementUex)
 
 
 Vue.config.productionTip = false
