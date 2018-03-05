@@ -1,114 +1,97 @@
 <template>
   <div id="app">
-    <elx-tree  
-      @node-click="handleNodeClick" 
-      :default-expanded-keys="defaultExpandedKeys" 
-      :current-node-key="currentNodeKey"
-      :data="data2"
-      default-expand-all
-      :expand-on-click-node="false">
-    </elx-tree>
-     <elx-select v-model="value" filterable placeholder="请选择">
-    <elx-option
-      v-for="(item, index) in options" :key="index"
-      :label="item.label"
-      :value="item.value">
-    </elx-option>
-  </elx-select>
+ <div class="menu-demo">
+<elx-sidebar  :show.sync="show" :location-origin="locationOrigin" :title="title" :is-post="false" :message="message" :descr="descr" v-on:sidebar-open="sidebarOpen" v-on:menu-change="menuChange" :menu-active.sync="menuActive" :menu-open='menuOpen' :menu-data="testMenuData"  :guide-arrow-show="guideArrowShow"></elx-sidebar>
+  
+  
+  
+  </div>
   </div>
   
 </template>
 
 <script>
-const data2 = [
-  {
-      "id": "paas_proc",
-      "label": "程序",
-      "children": [
-          {
-              "id": "paas_proc_2",
-              "label": "流量经营哈哈哈哈哈哈",
-              "children": [
-                  {
-                      "id": "paas_proc_21",
-                      "label": "流量经营3u 互动呼呼呼呼",
-                      "children": [
-                          {
-                              "id": "paas_proc_211",
-                              "label": "流量经营31说为啥为啥为啥为啥为啥为啥",
-                              "children": null
-                          }
-                      ]
-                  }
-              ]
-          },
-          {
-              "id": "paas_proc_3",
-              "label": "一经程序",
-              "children": null
-          },
-          {
-              "id": "paas_proc_4",
-              "label": "话单统计",
-              "children": null
-          },
-          {
-              "id": "paas_proc_5",
-              "label": "短彩信",
-              "children": null
-          },
-          {
-              "id": "paas_proc_6",
-              "label": "营销活动",
-              "children": null
-          },
-          {
-              "id": "paas_proc_7",
-              "label": "人均收入",
-              "children": null
-          },
-          {
-              "id": "paas_proc_tmp",
-              "label": "临时文件夹",
-              "children": null
-          }
-      ]
-  }
-];
+import testMenuData from '../src/assets/menu.json';
 export default {
   name: 'App',
-  methods: {
-    handleNodeClick(data) {
-    },
-  },
+  methods:{
+			receiveMessage: function(message){
+			console.log(message);
+		},
+		menuChange: function(model) {
+		    this.focusMenu = model.modelcode;
+		    console.log(model);
+		    this.refresh++;
+		},
+		sidebarOpen: function(show){
+			console.log(show);
+		}
+		},
   data() {
+      // this.$http.get('/apis', {}, {
+      //     headers: {}
+      //   }
+      // )
+      // .then(
+      //   function(response) {
+      //     // 这里是处理正确的回调
+      //     // this.articles = response.data["subjects"] 也可以
+      //     console.log("response", response);
+      //   },
+      //   function(response) {
+      //     // 这里是处理错误的回调
+      //     console.log(response);
+      //   }
+      // );
     return {
-        options: [{
-          value: '选项1',
-          label: '黄金糕'
-        }, {
-          value: '选项2',
-          label: '双皮奶'
-        }, {
-          value: '选项3',
-          label: '蚵仔煎'
-        }, {
-          value: '选项4',
-          label: '龙须面'
-        }, {
-          value: '选项5',
-          label: '北京烤鸭'
-        }],
-        value: '',
-      
-      data2: [],
-      defaultExpandedKeys: ['paas_proc', 'paas_proc_6'],
-      currentNodeKey: 'paas_proc'
+       message: {menuType: 'narrow'},
+	    	testMenuData: [],
+	    	title: 'API管理',
+	    	descr: '服务器分配的注释文字，这里可以放数据库分配的注释文字。',
+	    	refresh:0,
+	    	focusMenu: '',
+	    	menuActive: '',
+	    	menuOpen: '',
+	    	menuType: 'outer',
+	    	filter: null,
+	    	searchFocus: false,
+	    	guideArrowShow: false,
+	    	refresh: 0,
+	    	options: [],
+	        openValue: '',
+	        activeValue: '',
+	        locationOrigin: location.origin
     };
   },
+  
+  watch: {
+		openValue: function(val, oldVal) {
+		    this.menuOpen = val;	
+		},
+		activeValue: function(val, oldVal) {
+		    this.menuActive = val;	
+		}
+		},
   created: function(){
-    var _self = this;
-    _self.data2 = data2
+    
+   var fun=function(node){
+			node.open=false;
+			node.active=false;
+			node.modelcode=node.menuId;
+			node.parentcode=node.parentId;
+			node.modelname=node.menuName;
+			node.modeltype=node.menuType;
+			node.images=node.menuIcon;
+			if(node.children.length==0)
+				return;
+			for(var i=0;i<node.children.length;i++){
+				fun(node.children[i]);
+			}
+		};
+		for (var i = 0;i < testMenuData.length;i++) {
+			fun(testMenuData[i]);
+		}
+		this.testMenuData = testMenuData;
   }
 }
 </script>
