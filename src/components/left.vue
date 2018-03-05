@@ -57,7 +57,50 @@ var testMenuData = [
     "modelname": "数据门户",
     "menuType": "2",
     "hasright": "1",
-    "menuIcon": "uex-icon-obj-basic-standards"
+    "menuIcon": "uex-icon-obj-basic-standards",
+    
+},
+{
+    "url": "",
+    "children": [
+        {
+            "url": "/home/dashboard",
+            "children": [],
+            "menuId": "data-directory",
+            "parentId": "use-home",
+            "modelname": "dashboard",
+            "menuType": "0",
+            "hasright": "1",
+            "menuIcon": "uex-fr-icon-obj-basic-standards"
+        },
+        {
+            "url": "/home/dashboard1",
+            "children": [],
+            "menuId": "data-directory",
+            "parentId": "use-home",
+            "modelname": "dashboard111",
+            "menuType": "0",
+            "hasright": "1",
+            "menuIcon": "uex-fr-icon-obj-basic-standards"
+        },
+        {
+            "url": "",
+            "children": [],
+            "menuId": "data-atlas",
+            "parentId": "use-home",
+            "modelname": "数据图谱",
+            "menuType": "0",
+            "hasright": "1",
+            "menuIcon": "uex-icon-obj-basic-standards"
+        }
+    ],
+    "menuId": "use-home1",
+    "parentId": "console1",
+    "modelname": "数据门户",
+    "menuType": "23",
+    "hasright": "12",
+    "menuIcon": "uex-icon-obj-basic-standards",
+    
 }
 ];
 export default {
@@ -66,7 +109,7 @@ export default {
 	    	testMenuData: [],
 	    	refresh:0,
 	    	focusMenu: '',
-	    	menuActive: 'api_catalog_1_2',
+	    	menuActive: '',
 	    	menuOpenActive: '',
 	    	menuType: 'outer',
 	    	filter: null,
@@ -88,8 +131,9 @@ export default {
 			    }
 			},
 			lastChildNodeClick: function(model){
-         console.log('333333',model);
-         this.$router.push(model.url);
+                console.log('333333',model);
+                this.$router.push(model.url);
+                model.active = true;
 			}
 		},
 		watch: {
