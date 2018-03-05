@@ -1,32 +1,33 @@
 <template>
-  <div id="app">
- <div class="menu-demo">
-<elx-sidebar  :show.sync="show" :location-origin="locationOrigin" :title="title" :is-post="false" :message="message" :descr="descr" v-on:sidebar-open="sidebarOpen" v-on:menu-change="menuChange" :menu-active.sync="menuActive" :menu-open='menuOpen' :menu-data="testMenuData"  :guide-arrow-show="guideArrowShow"></elx-sidebar>
-  
-  
-  
-  </div>
+  <div id="app" style="height:100%">
+        <elx-main split-type="row">
+            <elx-header><v-header></v-header></elx-header>
+            <elx-scroll-content split-type="col" style="height:100%">
+              <elx-aside  style="width:18%;height:100%"><v-left></v-left></elx-aside>
+              <elx-scroll-content style="height:100%;width:80%;">
+                <div class="content-demo"><router-view></router-view></div>
+              </elx-scroll-content>
+            </elx-scroll-content>
+        </elx-main>
+    
+
   </div>
   
 </template>
 
 <script>
-import testMenuData from '../src/assets/menu.json';
+import VHeader from "./components/header";
+import VLeft from "./components/left";
 export default {
   name: 'App',
-  methods:{
-			receiveMessage: function(message){
-			console.log(message);
-		},
-		menuChange: function(model) {
-		    this.focusMenu = model.modelcode;
-		    console.log(model);
-		    this.refresh++;
-		},
-		sidebarOpen: function(show){
-			console.log(show);
-		}
-		},
+  methods: {
+   
+  },
+  components :{
+    VHeader,
+    VLeft
+
+  },
   data() {
       // this.$http.get('/apis', {}, {
       //     headers: {}
@@ -44,23 +45,7 @@ export default {
       //   }
       // );
     return {
-       message: {menuType: 'narrow'},
-	    	testMenuData: [],
-	    	title: 'API管理',
-	    	descr: '服务器分配的注释文字，这里可以放数据库分配的注释文字。',
-	    	refresh:0,
-	    	focusMenu: '',
-	    	menuActive: '',
-	    	menuOpen: '',
-	    	menuType: 'outer',
-	    	filter: null,
-	    	searchFocus: false,
-	    	guideArrowShow: false,
-	    	refresh: 0,
-	    	options: [],
-	        openValue: '',
-	        activeValue: '',
-	        locationOrigin: location.origin
+       
     };
   },
   
@@ -73,32 +58,13 @@ export default {
 		}
 		},
   created: function(){
-    
-   var fun=function(node){
-			node.open=false;
-			node.active=false;
-			node.modelcode=node.menuId;
-			node.parentcode=node.parentId;
-			node.modelname=node.menuName;
-			node.modeltype=node.menuType;
-			node.images=node.menuIcon;
-			if(node.children.length==0)
-				return;
-			for(var i=0;i<node.children.length;i++){
-				fun(node.children[i]);
-			}
-		};
-		for (var i = 0;i < testMenuData.length;i++) {
-			fun(testMenuData[i]);
-		}
-		this.testMenuData = testMenuData;
+  
   }
 }
 </script>
-
 <style>
 
 #app {
-  width: 200px;
+  
 }
 </style>
