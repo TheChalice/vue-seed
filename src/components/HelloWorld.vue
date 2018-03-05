@@ -66,21 +66,21 @@ export default {
   name: 'HelloWorld',
   data() {
        
-    this.$http.get('/apis', {}, {
-          headers: {}
-        }
-      )
-      .then(
-        function(response) {
-          // 这里是处理正确的回调
-          // this.articles = response.data["subjects"] 也可以
-          console.log("response", response);
-        },
-        function(response) {
-          // 这里是处理错误的回调
-          console.log(response);
-        }
-      );
+    // this.$http.get('/apis', {}, {
+    //       headers: {}
+    //     }
+    //   )
+    //   .then(
+    //     function(response) {
+    //       // 这里是处理正确的回调
+    //       // this.articles = response.data["subjects"] 也可以
+    //       console.log("response", response);
+    //     },
+    //     function(response) {
+    //       // 这里是处理错误的回调
+    //       console.log(response);
+    //     }
+      // );
     return {
        options: [{
           value: '选项1',

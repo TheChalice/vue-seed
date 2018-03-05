@@ -1,160 +1,139 @@
 <template>
-
-  <div style="height:100%">
-   <elx-menu v-on:sidebar-open="sidebarOpen"
-    v-on:last-child-node-click="lastChildNodeClick" 
-    :location-source="'http://0.0.0.0:8085/'" 
-    :is-post="true" 
-    :post-message="'hide'" 
-    v-on:menu-change="menuChange" 
-    :menu-active.sync="menuActive" :menu-open='menuOpenActive'
-    :menu-data="testMenuData"
-     :menu-type="menuType" 
-     :guide-arrow-show="guideArrowShow">
-     </elx-menu>
+  <div id="app">
+    <elx-menu 
+        v-on:sidebar-open="sidebarOpen" 
+        v-on:last-child-node-click="lastChildNodeClick" 
+        :location-source="'http://0.0.0.0:8085/'" 
+        :is-post="true" 
+        :post-message="'hide'" 
+        v-on:menu-change="menuChange" 
+        :menu-active.sync="menuActive" 
+        :menu-open='menuOpen' 
+        :menu-data="data2" 
+        :menu-type="menuType" 
+    >
+    </elx-menu>
   </div>
 </template>
+<style>
+div#sidebar .menu-content {
+    height: 500px;
+}
+</style>
 
 <script>
-  import $ from "jquery";
-var testMenuData = [
+const data2 = [
   {
-    "url": "",
-    "children": [
-        {
-            "url": "/home/dashboard",
-            "children": [],
-            "menuId": "data-directory",
-            "parentId": "use-home",
-            "modelname": "dashboard",
-            "menuType": "0",
-            "hasright": "1",
-            "menuIcon": "uex-fr-icon-obj-basic-standards"
-        },
-        {
-            "url": "/home/dashboard1",
-            "children": [],
-            "menuId": "data-directory",
-            "parentId": "use-home",
-            "modelname": "dashboard111",
-            "menuType": "0",
-            "hasright": "1",
-            "menuIcon": "uex-fr-icon-obj-basic-standards"
-        },
-        {
-            "url": "",
-            "children": [],
-            "menuId": "data-atlas",
-            "parentId": "use-home",
-            "modelname": "数据图谱",
-            "menuType": "0",
-            "hasright": "1",
-            "menuIcon": "uex-icon-obj-basic-standards"
-        }
+    url: "dataps/devops/overview",
+    children: [
+      {
+        url: "ftl/distribute/distributeList",
+        children: [
+          {
+            url: "ftl/distribute/distributeList1",
+            children: [],
+            sidebarType: null,
+            descr: null,
+            extendConf: null,
+            open: false,
+            active: false,
+            modelcode: "distribute-list-1",
+            modelname: "数据分发1",
+            modeltype: "0",
+            parentcode: "distribute-list",
+            images: "uex-icon-platform-resource-allocation"
+          }
+        ],
+        sidebarType: null,
+        descr: null,
+        extendConf: null,
+        open: false,
+        active: false,
+        modelcode: "distribute-list",
+        modelname: "数据分发",
+        modeltype: "0",
+        parentcode: "data-dev-summary",
+        images: "uex-icon-platform-resource-allocation"
+      },
+      {
+        url: "ftl/distribute/distributeList2",
+        children: [],
+        sidebarType: null,
+        descr: null,
+        extendConf: null,
+        open: false,
+        active: false,
+        modelcode: "distribute-list-2",
+        modelname: "数据分发2",
+        modeltype: "0",
+        parentcode: "data-dev-summary",
+        images: "uex-icon-platform-resource-allocation"
+      }
     ],
-    "menuId": "use-home",
-    "parentId": "console",
-    "modelname": "数据门户",
-    "menuType": "2",
-    "hasright": "1",
-    "menuIcon": "uex-icon-obj-basic-standards",
-    
-},
-{
-    "url": "",
-    "children": [
-        {
-            "url": "/home/dashboard",
-            "children": [],
-            "menuId": "data-directory",
-            "parentId": "use-home",
-            "modelname": "dashboard",
-            "menuType": "0",
-            "hasright": "1",
-            "menuIcon": "uex-fr-icon-obj-basic-standards"
-        },
-        {
-            "url": "/home/dashboard1",
-            "children": [],
-            "menuId": "data-directory",
-            "parentId": "use-home",
-            "modelname": "dashboard111",
-            "menuType": "0",
-            "hasright": "1",
-            "menuIcon": "uex-fr-icon-obj-basic-standards"
-        },
-        {
-            "url": "",
-            "children": [],
-            "menuId": "data-atlas",
-            "parentId": "use-home",
-            "modelname": "数据图谱",
-            "menuType": "0",
-            "hasright": "1",
-            "menuIcon": "uex-icon-obj-basic-standards"
-        }
+    descr: null,
+    extendConf: null,
+    menuName: "数据开发总览",
+    open: false,
+    active: false,
+    modelcode: "data-dev-summary",
+    modelname: "数据开发总览",
+    modeltype: "0",
+    parentcode: null,
+    images: "uex-icon-command-config"
+  },
+  {
+    url: "",
+    children: [
+      {
+        url: "ftl/distribute/distributeList3",
+        children: [],
+        sidebarType: null,
+        descr: null,
+        extendConf: null,
+        open: false,
+        active: false,
+        modelcode: "distribute-list-3",
+        modelname: "数据分发3",
+        modeltype: "0",
+        parentcode: "task-mgr",
+        images: "uex-icon-platform-resource-allocation"
+      }
     ],
-    "menuId": "use-home1",
-    "parentId": "console1",
-    "modelname": "数据门户",
-    "menuType": "23",
-    "hasright": "12",
-    "menuIcon": "uex-icon-obj-basic-standards",
-    
-}
+    menuName: "需求管理",
+    open: false,
+    active: false,
+    modelcode: "task-mgr",
+    modelname: "需求管理",
+    modeltype: "0",
+    parentcode: null,
+    images: ""
+  }
 ];
 export default {
-     data:function(){
-	    return {
-	    	testMenuData: [],
-	    	refresh:0,
-	    	focusMenu: '',
-	    	menuActive: '',
-	    	menuOpenActive: '',
-	    	menuType: 'outer',
-	    	filter: null,
-	    	searchFocus: false,
-        guideArrowShow:false,
-	    }	
-		},
-		methods:{
-			menuChange: function(model) {
-			    this.focusMenu = model.modelcode;
-			    this.refresh++;
-			},
-			sidebarOpen: function(type){
-				this.menuType = type;
-			    if(type === 'narrow'){
-			    	$('.dataex-layout .dataex-container.include-sidemenu').css("margin-left","52px");
-			    }else{
-			    	$('.dataex-layout .dataex-container.include-sidemenu').css("margin-left","182px");
-			    }
-			},
-			lastChildNodeClick: function(model){
-                console.log('333333',model);
-                this.$router.push(model.url);
-                model.active = true;
-			}
-		},
-		watch: {
-			'menuActive': function(val, oldVal){
-			 console.log('222222',val);
-			}
-		},
-		created: function() {
-			var fun=function(node){
-				node.open=false;
-				node.active=false;
-				if(node.children.length==0)
-					return;
-				for(var i=0;i<node.children.length;i++){
-					fun(node.children[i]);
-				}
-			};
-			for (var i = 0;i < testMenuData.length;i++) {
-				fun(testMenuData[i]);
-			}
-			this.testMenuData = testMenuData;
-		}
+  data: function() {
+    return {
+      menuActive: "distribute-list-3",
+      menuOpen: "",
+      menuType: "outer",
+      data2: [],
+      defaultExpandedKeys: ["paas_proc", "paas_proc_6"],
+      currentNodeKey: "paas_proc"
+    };
+  },
+  methods: {
+    handleNodeClick(data) {},
+    sidebarOpen: function() {},
+    lastChildNodeClick: function() {},
+    menuChange: function() {}
+  },
+  watch: {
+    menuActive: function(val, oldVal) {
+      console.log("222222", val);
+    }
+  },
+  created: function() {
+    var _self = this;
+    _self.data2 = data2;
   }
+};
 </script>

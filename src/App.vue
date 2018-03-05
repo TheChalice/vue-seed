@@ -50,12 +50,7 @@ export default {
   },
   
   watch: {
-		openValue: function(val, oldVal) {
-		    this.menuOpen = val;	
-		},
-		activeValue: function(val, oldVal) {
-		    this.menuActive = val;	
-		}
+	
 		},
   created: function(){
   
@@ -64,7 +59,4 @@ export default {
 </script>
 <style>
 
-#app {
-  
-}
 </style>
