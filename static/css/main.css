@@ -1,0 +1,81 @@
+#main {
+  color: #475669;
+  min-width: 890px;
+}
+.part {
+  padding: 30px 0px;
+  background: #fff;
+  cursor: pointer;
+}
+.title {
+  color: #1F2D3D;
+  font-size: 18px;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.content {
+  width: calc(100% - 360px);
+  margin: 0px auto;
+}
+.part ul {
+  overflow: hidden;
+}
+
+
+/*banner*/
+.banner.part {
+  padding: 0px;
+}
+/*子系统*/
+.all-system.part {
+  padding: 0px;
+}
+/*服务*/
+.service.part {
+  background: #F9FAFC;
+  border-bottom: 1px solid #E0E6ED;
+}
+/*场景*/
+.scene {
+  background: #F9FAFC;
+  border-bottom: 1px solid #E0E6ED;
+}
+.scene.part {
+  border-top: 1px solid #E0E6ED;
+}
+
+/*文档*/
+.document {
+  background: #FFF;
+  border-top: 1px solid #E0E6ED;
+}
+.document .title {
+  color: #475669;
+}
+.document .content {
+  width: 100%;
+}
+.document li {
+  width: calc((100% - 2px) / 4);
+  float: left;
+  border-right: 1px solid #CCD5E0;
+  padding: 0px 50px;
+}
+.document li h6 {
+  font-size: 16px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  color: #475669;
+  font-weight: 400;
+}
+.document li p {
+  font-size: 12px;
+  color: #A2B0C4;
+}
+
+.top-title,
+.header-middle .el-menu--dark,
+.header-right .el-menu--dark {
+  background-color: rgba(0,0,0,0) !important;
+}

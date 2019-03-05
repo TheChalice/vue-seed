@@ -7,10 +7,11 @@ import ElementUex from 'element-uex'
 import $ from 'jquery'
 
 
- 
+
 // require styles
 import 'element-ui/lib/theme-default/index.css'
 import 'element-uex/lib/theme-default/index.css'
+
 
 import App from './App'
 import router from './router'
